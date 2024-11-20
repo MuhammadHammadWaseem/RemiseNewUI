@@ -1593,8 +1593,22 @@ public function nonSeller()
     public function about_us()
     {
         $about_us = BusinessSetting::where('type', 'about_us')->first();
+
+        $featured_products = Product::with(['reviews'])->active()
+                ->where('featured', 1)
+                ->withCount(['order_details'])->orderBy('order_details_count', 'DESC')
+                ->where('user_id','!=',auth('seller')->user()->id)
+                ->take(12)
+                ->get();
+            //end
+
+            // $latest_products = Product::with(['reviews'])->active()->where('user_id','!=',auth('seller')->user()->id)->orderBy('id', 'desc')->take(8)->get();
+            $latest_products = Product::with(['reviews'])->active()->orderBy('id', 'desc')->take(8)->get();
+
         return view('web-views.about-us', [
             'about_us' => $about_us,
+            'featured_products' => $featured_products,
+            'latest_products' => $latest_products,
         ]);
     }
 

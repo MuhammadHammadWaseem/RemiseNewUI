@@ -6,47 +6,34 @@
         @yield('title')
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="{{asset('storage/app/public/company')}}/{{$web_config['fav_icon']->value}}">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="{{asset('storage/app/public/company')}}/{{$web_config['fav_icon']->value}}">
+    {{-- <link rel="apple-touch-icon" sizes="180x180" href="{{asset('storage/app/company')}}/{{$web_config['fav_icon']->value}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('storage/app/company')}}/{{$web_config['fav_icon']->value}}"> --}}
 
-    <link rel="stylesheet" media="screen"
-          href="{{asset('public/assets/front-end')}}/vendor/simplebar/dist/simplebar.min.css"/>
-    <link rel="stylesheet" media="screen"
-          href="{{asset('public/assets/front-end')}}/vendor/tiny-slider/dist/tiny-slider.css"/>
-    <link rel="stylesheet" media="screen"
-          href="{{asset('public/assets/front-end')}}/vendor/drift-zoom/dist/drift-basic.min.css"/>
-    <link rel="stylesheet" media="screen"
-          href="{{asset('public/assets/front-end')}}/vendor/lightgallery.js/dist/css/lightgallery.min.css"/>
-    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
+    {{-- <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/vendor/tiny-slider/dist/tiny-slider.css"/>
+    <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/vendor/drift-zoom/dist/drift-basic.min.css"/>
+    <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/vendor/lightgallery.js/dist/css/lightgallery.min.css"/> --}}
+    <link rel="stylesheet" href="{{asset('assets/back-end')}}/css/toastr.css"/>
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/theme.min.css">
-    <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/slick.css">
-    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
-    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/master.css"/>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    {{-- <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="{{asset('assets/front-end')}}/css/slick.css">
+    <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/master.css"/> --}}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
     {{-- light box --}}
-    <link rel="stylesheet" href="{{asset('public/css/lightbox.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/vendor/icon-set/style.css">
+    {{-- <link rel="stylesheet" href="{{asset('css/lightbox.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/back-end')}}/vendor/icon-set/style.css"> --}}
     @stack('css_or_js')
 
-    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/home.css"/>
-    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/responsive1.css"/>
+    <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/new_style.css"/>
+    <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/new_lib.css"/>
+    
+    {{-- <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/home.css"/>
+    <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/responsive1.css"/> --}}
 
-
-    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/style.css">
-    {{--dont touch this--}}
+    {{-- <link rel="stylesheet" href="{{asset('assets/front-end')}}/css/style.css"> --}}
     <meta name="_token" content="{{csrf_token()}}">
-    {{--dont touch this--}}
-    <!--to make http ajax request to https-->
-    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
-        // Pusher.logToConsole = true;
-
         var pusher = new Pusher('9cbaed47a381e7fe7463', {
             cluster: 'ap1'
         });
@@ -67,158 +54,6 @@
             }
         });
    </script>
-    <style>
-        .rtl {
-            direction: {{ Session::get('direction') }};
-        }
-
-        .password-toggle-btn .password-toggle-indicator:hover {
-            color: {{$web_config['primary_color']}};
-        }
-
-        .password-toggle-btn .custom-control-input:checked ~ .password-toggle-indicator {
-            color: {{$web_config['secondary_color']}};
-        }
-
-        .dropdown-item:hover, .dropdown-item:focus {
-            color: {{$web_config['primary_color']}};
-        }
-
-        .dropdown-item.active, .dropdown-item:active {
-            color: {{$web_config['secondary_color']}};
-        }
-
-        .navbar-light .navbar-tool-icon-box {
-            color: {{$web_config['primary_color']}};
-        }
-
-        .search_button {
-            background-color: {{$web_config['primary_color']}};
-        }
-
-
-        .navbar-stuck-menu {
-            background-color: {{$web_config['primary_color']}};
-        }
-
-        .mega-nav .nav-item .nav-link {
-            color: {{$web_config['primary_color']}}                           !important;
-        }
-        .checkbox-alphanumeric label:hover {
-            border-color: {{$web_config['primary_color']}};
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: {{$web_config['secondary_color']}}        !important;
-        }
-
-        [type="radio"] {
-            border: 0;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-        }
-
-        [type="radio"] + span:after {
-            box-shadow: 0 0 0 0.10em{{$web_config['secondary_color']}};
-        }
-
-        [type="radio"]:checked + span:after {
-            background: {{$web_config['secondary_color']}};
-            box-shadow: 0 0 0 0.10em{{$web_config['secondary_color']}};
-        }
-        .navbar-tool .navbar-tool-label {
-            background-color: {{$web_config['secondary_color']}}!important;
-        }
-
-        .btn--primary {
-            color: #fff;
-            background-color: {{$web_config['primary_color']}}!important;
-            border-color: {{$web_config['primary_color']}}!important;
-        }
-
-        .btn--primary:hover {
-            color: #fff;
-            background-color: {{$web_config['primary_color']}}!important;
-            border-color: {{$web_config['primary_color']}}!important;
-        }
-
-        .btn-secondary {
-            background-color: {{$web_config['secondary_color']}}!important;
-            border-color: {{$web_config['secondary_color']}}!important;
-        }
-
-        .btn-outline-accent:hover {
-            color: #fff;
-            background-color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
-        }
-
-        .btn-outline-accent {
-            color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
-        }
-
-        .text-accent {
-            color: {{$web_config['primary_color']}};
-        }
-
-        a:hover {
-            color: {{$web_config['secondary_color']}};
-        }
-
-        .active-menu {
-            color: {{$web_config['secondary_color']}}!important;
-        }
-
-        .page-item.active > .page-link {
-            box-shadow: 0 0.5rem 1.125rem -0.425rem{{$web_config['primary_color']}}
-
-
-        }
-
-        .page-item.active .page-link {
-            background-color: {{$web_config['primary_color']}};
-        }
-
-        .btn-outline-accent:not(:disabled):not(.disabled):active, .btn-outline-accent:not(:disabled):not(.disabled).active, .show > .btn-outline-accent.dropdown-toggle {
-            background-color: {{$web_config['secondary_color']}};
-            border-color: {{$web_config['secondary_color']}};
-        }
-
-        .btn-outline-primary {
-            color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
-        }
-
-        .btn-outline-primary:hover {
-            background-color: {{$web_config['secondary_color']}};
-            border-color: {{$web_config['secondary_color']}};
-        }
-
-        .btn-outline-primary:focus, .btn-outline-primary.focus {
-            box-shadow: 0 0 0 0{{$web_config['secondary_color']}};
-        }
-
-        .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-            background-color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
-        }
-
-        .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-primary.dropdown-toggle:focus {
-            box-shadow: 0 0 0 0{{$web_config['primary_color']}};
-        }
-        .for-discoutn-value {
-            background: {{$web_config['primary_color']}};
-        }
-        .dropdown-menu {
-            margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: -8px !important;
-        }
-    </style>
 
     @php($google_tag_manager_id = \App\CPU\Helpers::get_business_settings('google_tag_manager_id'))
     @if($google_tag_manager_id )
@@ -280,7 +115,6 @@
         });
    </script>
 </head>
-<!-- Body-->
 <body class="toolbar-enabled">
     @if($google_tag_manager_id)
         <!-- Google Tag Manager (noscript) -->
@@ -302,9 +136,9 @@
         <div class="col-12" style="margin-top:10rem;position: fixed;z-index: 9999;">
             <div id="loading" style="display: none;">
                <center>
-                <img width="200"
-                     src="{{asset('storage/app/public/company')}}/{{\App\CPU\Helpers::get_business_settings('loader_gif')}}"
-                     onerror="this.src='{{asset('public/assets/front-end/img/loader.gif')}}'">
+                {{-- <img width="200"
+                     src="{{asset('storage/app/company')}}/{{\App\CPU\Helpers::get_business_settings('loader_gif')}}"
+                     onerror="this.src='{{asset('assets/front-end/img/loader.gif')}}'"> --}}
                </center>
             </div>
         </div>
@@ -329,42 +163,36 @@
     @if(isset($whatsapp['status']) && $whatsapp['status'] == 1 )
         <div class="wa-widget-send-button">
             <a href="https://web.whatsapp.com/send/?phone={{ $whatsapp['phone'] }}?text=Hello%20there!" target="_blank">
-                <img src="{{asset('public/assets/front-end/img/whatsapp.svg')}}" class="wa-messenger-svg-whatsapp wh-svg-icon" alt="Chat with us on WhatsApp">
+                <img src="{{asset('assets/front-end/img/whatsapp.svg')}}" class="wa-messenger-svg-whatsapp wh-svg-icon" alt="Chat with us on WhatsApp">
             </a>
         </div>
     @endif
 
-{{--    @php($messenger = \App\CPU\Helpers::get_business_settings('messenger'))--}}
-{{--    @if(isset($messenger['status']) && $messenger['status']==1)--}}
-{{--        {!! $messenger['script'] !!}--}}
-{{--    @endif--}}
-
-    <!-- Vendor scrits: js libraries and plugins-->
 </div>
 
-{{--<script src="{{asset('public/assets/front-end')}}/vendor/jquery/dist/jquery.slim.min.js"></script>--}}
-<script src="{{asset('public/assets/front-end')}}/vendor/jquery/dist/jquery-2.2.4.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script
-    src="{{asset('public/assets/front-end')}}/vendor/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/simplebar/dist/simplebar.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="{{asset('assets/front-end')}}/js/new_custom.js"></script>
+<script src="{{asset('assets/front-end')}}/js/new_lib.js"></script>
+{{-- <script src="{{asset('assets/front-end')}}/vendor/jquery/dist/jquery-2.2.4.min.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --}}
+{{-- <script src="{{asset('assets/front-end')}}/vendor/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script> --}}
 
 {{-- light box --}}
-<script src="{{asset('public/js/lightbox.min.js')}}"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/drift-zoom/dist/Drift.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/vendor/lg-video.js/dist/lg-video.min.js"></script>
+{{-- <script src="{{asset('js/lightbox.min.js')}}"></script>
+<script src="{{asset('assets/front-end')}}/vendor/drift-zoom/dist/Drift.min.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
+<script src="{{asset('assets/front-end')}}/vendor/lg-video.js/dist/lg-video.min.js"></script> --}}
 {{--Toastr--}}
-<script src={{asset("public/assets/back-end/js/toastr.js")}}></script>
+<script src={{asset("assets/back-end/js/toastr.js")}}></script>
 <!-- Main theme script-->
-<script src="{{asset('public/assets/front-end')}}/js/theme.min.js"></script>
-<script src="{{asset('public/assets/front-end')}}/js/slick.min.js"></script>
+{{-- <script src="{{asset('assets/front-end')}}/js/theme.min.js"></script>
+<script src="{{asset('assets/front-end')}}/js/slick.min.js"></script> --}}
 
-<script src="{{asset('public/assets/front-end')}}/js/sweet_alert.js"></script>
+{{-- <script src="{{asset('assets/front-end')}}/js/sweet_alert.js"></script> --}}
 {{--Toastr--}}
-<script src={{asset("public/assets/back-end/js/toastr.js")}}></script>
+<script src={{asset("assets/back-end/js/toastr.js")}}></script>
 {!! Toastr::message() !!}
 
 <script>
@@ -852,7 +680,7 @@
 
     const img = document.getElementByTagName("img");
     img.addEventListener("error", function (event) {
-        event.target.src = '{{asset('public/assets/front-end/img/image-place-holder.png')}}';
+        event.target.src = '{{asset('assets/front-end/img/image-place-holder.png')}}';
         event.onerror = null
     })
 

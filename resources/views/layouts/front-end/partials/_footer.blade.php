@@ -1,12 +1,3 @@
-<style>
-    .social-media :hover {
-        color: {{ $web_config['secondary_color'] }} !important;
-    }
-
-    .start_address_under_line {
-        {{ Session::get('direction') === 'rtl' ? 'width: 344px;' : 'width: 331px;' }}
-    }
-</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,238 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remise Fencing</title>
-
-    <link rel="stylesheet" href="style.css">
-
-
-
-
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
-
-    <style>
-        /* footer CSS */
-        .footer {
-            /* background: #000; */
-            background: #151515;
-
-            padding-top: 100px;
-        }
-
-        .headingFoot {
-            color: #fff;
-        }
-
-        .textFoot {
-            color: #FFF;
-            line-height: 0;
-        }
-
-
-        .footLogo {
-            width: 180px;
-        }
-
-        .footText2 {
-            color: #fff;
-            font-size: 13px;
-            font-weight: 300;
-            text-align: justify;
-        }
-
-        .footRight {
-            display: flex;
-            justify-content: center;
-
-        }
-
-        .footMenu {
-            margin-top: 32px !important;
-        }
-
-        .company {
-            justify-content: center;
-            align-items: center;
-            /* margin: 24px 0px 24px 24px;
-    margin-right: 0px; */
-        }
-
-
-        .comp3 {
-            margin-left: 20px;
-        }
-
-        .comp2 {
-            margin-left: 30px;
-        }
-
-        /* .comp1 {
-    margin-left: 50px;
-} */
-
-        .companyName {
-            color: #fff;
-            font-size: 17px;
-            margin-left: 40px;
-            /* text-align: center; */
-            font-weight: 600;
-        }
-
-        .socialIcons {
-            float: right;
-        }
-
-        .iconSocial {
-            color: #FFF;
-            float: right;
-            margin: 0 0 0 35px !important;
-            font-size: 20px;
-        }
-
-        .menuList a {
-            line-height: 2;
-            font-size: 12px;
-            list-style: none;
-            color: #FFF;
-            text-decoration: none;
-
-        }
-
-        .searchMarketing {
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .menuList {
-            line-height: 2;
-            font-size: 12px;
-            list-style: none;
-            color: #FFF;
-            /* justify-content: center; */
-            padding-left: 40px;
-        }
-
-        .menuList .menuItem:hover {
-            cursor: pointer;
-            color: #FF061E;
-        }
-
-        .menuList a:hover {
-            color: #FF061E;
-        }
-
-        .mobileDivide {
-            display: none;
-        }
-
-        @media screen and (max-width: 825px) {
-            .searchMarketing {
-                text-align: center;
-            }
-
-            .mobileDivide {
-                display: block;
-            }
-
-            .socialIcons {
-                display: flex;
-                justify-content: center;
-                margin: 10px;
-            }
-
-            .textFoot {
-                font-size: 8px;
-            }
-
-            .comp4 {
-                margin-left: 25px;
-
-            }
-
-            .socialIcons {
-                float: none;
-            }
-
-            .comp2,
-            .comp3,
-            .comp4 {
-                display: grid;
-                justify-content: left;
-            }
-
-            .comp1 {
-                display: grid;
-                justify-items: left;
-            }
-
-            .logFooter {
-                display: grid;
-
-                justify-items: center;
-            }
-
-            .comp1 {
-                margin-left: 20px;
-            }
-        }
-
-        @media screen and (max-width:480px) {
-            .comp3 {
-                margin-left: 0px;
-            }
-
-            .comp2 {
-                margin-left: 0px;
-            }
-
-            .comp1 {
-                margin-left: 10px;
-                justify-items: center;
-            }
-
-            .companyName {
-                margin-left: 30px;
-                text-align: center;
-            }
-
-            .menuItemTerm {
-                text-align: center;
-            }
-
-            .searchMarketing {
-                text-align: center;
-            }
-
-            .comp2,
-            .comp3,
-            .comp4 {
-                justify-content: center;
-            }
-
-            .socialIcons {
-                display: flex;
-                justify-content: center;
-                margin: 10px;
-            }
-
-            .textFoot {
-                font-size: 12px;
-            }
-
-            .menuOffice {
-                /* margin-left: 25px; */
-                text-align: center;
-            }
-
-        }
-    </style>
 </head>
 
 
@@ -305,20 +64,15 @@
             <hr><br><br>
             <div class="row  mr-0">
                 <div class="col-lg-3 col-md-12 col-sm-12 pr-0 logFooter">
-                    <img class="footLogo"
-                        src="{{ asset('storage/app/public/company/') }}/{{ $web_config['footer_logo']->value }}"
-                        alt="">
+                    {{-- <img class="footLogo"
+                        src="{{ asset('storage/app/company/') }}/{{ $web_config['footer_logo']->value }}"
+                        alt=""> --}}
                     <br><br>
                     <p class="footText2">Your one stop site for buying and selling pre used fencing gear.
                     </p>
 
                 </div>
 
-                {{-- <hr class="mobileDivide"> --}}
-
-                <!-- <div class="col-1">
-
-            </div> -->
                 <br><br>
 
                 <div class="col col-lg-9 col-md-12 col-sm-12 footRight">
@@ -446,30 +200,24 @@
 
 
                         <a href="https://www.facebook.com/">
-                            {{-- <i class="fab fa-facebook-f iconSocial"></i> --}}
-                            {{-- <i class="fa-brands fa-facebook-f iconSocial"></i> --}}
-                            <img src="{{ asset('public/assets/Images/fb.png') }}" alt="" class="iconSocial">
+                            <img src="{{ asset('assets/Images/fb.png') }}" alt="" class="iconSocial">
                         </a>
                         <a href="https://www.instagram.com/">
-                            {{-- <i class="fab fa-instagram iconSocial"></i> --}}
-                            <img src="{{ asset('public/assets/Images/insta.png') }}" alt="" class="iconSocial">
+                            <img src="{{ asset('assets/Images/insta.png') }}" alt="" class="iconSocial">
 
                         </a>
                         <a href="https://www.twitter.com/">
-                            {{-- <i class="fab fa-twitter iconSocial"></i> --}}
-                            <img src="{{ asset('public/assets/Images/t.png') }}" alt="" class="iconSocial">
+                            <img src="{{ asset('assets/Images/t.png') }}" alt="" class="iconSocial">
 
                         </a>
 
                         <a href="https://www.linkedin.com/">
-                            {{-- <i class="fab fa-linkedin-in iconSocial"></i> --}}
-                            <img src="{{ asset('public/assets/Images/link.png') }}" alt=""
+                            <img src="{{ asset('assets/Images/link.png') }}" alt=""
                                 class="iconSocial">
 
                         </a>
                         <a href="https://www.pinterest.com/">
-                            {{-- <i class="fab fa-pinterest iconSocial"></i> --}}
-                            <img src="{{ asset('public/assets/Images/p.png') }}" alt="" class="iconSocial">
+                            <img src="{{ asset('assets/Images/p.png') }}" alt="" class="iconSocial">
 
                         </a>
                     </div>

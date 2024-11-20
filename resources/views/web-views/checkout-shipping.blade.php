@@ -3,113 +3,22 @@
 @section('title',\App\CPU\translate('Shipping Address Choose'))
 
 @push('css_or_js')
-    <link rel="stylesheet" href="{{ asset('public/assets/front-end/css/bootstrap-select.min.css') }}">
-
-    <style>
-         @font-face {
-            font-family: 'BURBANKBIGCONDENSED-BOLD';
-            src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-        }
-        @font-face {
-            font-family: 'BURBANKBIGCONDENSED-BLACK';
-            src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-
-        }
-
-        .btn-outline {
-            border-color: {{$web_config['primary_color']}} ;
-        }
-
-        .btn-outline {
-            border-color: {{$web_config['primary_color']}}    !important;
-        }
-
-        .btn-outline:hover {
-            background: {{$web_config['primary_color']}};
-
-        }
-
-        .btn-outline:focus {
-            border-color: {{$web_config['primary_color']}}    !important;
-        }
-
-        /* #location_map_canvas {
-           height: 100%;
-         } */
-
-        .filter-option{
-            display: block;
-            width: 100%;
-            height: calc(1.5em + 1.25rem + 2px);
-            padding: 0.625rem 1rem;
-            font-size: .9375rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #4b566b;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #dae1e7;
-            border-radius: 0.3125rem;
-            box-shadow: 0 0 0 0 transparent;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-
-        .btn-light + .dropdown-menu{
-            transform: none !important;
-            top: 41px !important;
-        }
-        .steps-light .step-item.active .step-count, .steps-light .step-item.active .step-progress{
-            color: #fff;
-            background-color: #FF061E !important;
-        }
-        .step-count{
-            height: 15px !important;
-        }
-
-        .anotherAdd{
-            border: 1px solid #FF061E !important;
-            font-size: 15px !important;
-            font-weight: 600 !important;
-        }
-        .anotherAdd:hover{
-            border: 1px solid #FF061E !important;
-            background: #FF061E !important;
-
-        }
-        .anotherAdd:focus{
-            outline: none !important;
-
-        }
-        .addType{
-            padding: 0 !important;
-            height: 50px !important;
-        }
-        .abc div{
-            padding: 0px 10px !important;
-        }
-        /* @media only screen and (max-width: 768px) {
-           !* For mobile phones: *!
-           #location_map_canvas {
-               height: 200px;
-           }
-        } */
-    </style>
 @endpush
 
 @section('content')
 @php($billing_input_by_customer=\App\CPU\Helpers::get_business_settings('billing_input_by_customer'))
-    <div class="container pb-5 mb-2 mb-md-4 rtl __inline-56"
+    <div class="container-fluid cart-section"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
             <div class="col-md-12 mb-5 pt-5">
                 <div class="feature_header">
-                    <span style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important; text-transform:capitalize; font-size:33.23px;">{{ \App\CPU\translate('shipping')}} {{$billing_input_by_customer==1?\App\CPU\translate('and').' '.\App\CPU\translate('billing'):' '}} {{\App\CPU\translate('address')}}</span>
+                    <span style=" text-transform:capitalize; font-size:33.23px;">{{ \App\CPU\translate('shipping')}} {{$billing_input_by_customer==1?\App\CPU\translate('and').' '.\App\CPU\translate('billing'):' '}} {{\App\CPU\translate('address')}}</span>
                 </div>
             </div>
             <section class="col-lg-8">
                 <div class="checkout_details">
                     <!-- Steps-->
-                @include('web-views.partials._checkout-steps',['step'=>2])
+                {{-- @include('web-views.partials._checkout-steps',['step'=>2]) --}}
                     @php($default_location=\App\CPU\Helpers::get_business_settings('default_location'))
                     <input type="hidden" id="physical_product" name="physical_product" value="{{ $physical_product_view ? 'yes':'no'}}">
                     
@@ -117,21 +26,24 @@
                     @if($physical_product_view)
                         <h2 class="h4 pb-3 mb-2 mt-5">{{ \App\CPU\translate('choose_shipping_address')}}</h2>
                         @php($shipping_addresses=\App\Model\ShippingAddress::where('customer_id',auth('seller')->id())->where('is_billing',0)->get())
-                        <form method="post" class="card __card" id="address-form">
+                        <form method="post" class="card bg-grey-box" id="address-form">
                             <div class="card-body p-0">
                                 <ul class="list-group">
                                     @foreach($shipping_addresses as $key=>$address)
-                                        <li class="list-group-item __inline-57" onclick="$('#sh-{{$address['id']}}').prop( 'checked', true )">
+                                        <li onclick="$('#sh-{{$address['id']}}').prop( 'checked', true )">
                                             <input type="radio" name="shipping_method_id"
                                                    id="sh-{{$address['id']}}"
-                                                   value="{{$address['id']}}" {{$key==0?'checked':''}}>
+                                                   value="{{$address['id']}}" {{$key==0?'checked':''}} style="height: 15px; width: 15px; position: relative;">
                                             <span class="checkmark"
                                                   style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 10px"></span>
+
+                                                  <small>
+                                                    <i class="fa fa-phone"></i> {{$address['phone']}}
+                                                </small>
+
                                             <label class="badge"
-                                                   style="background: {{$web_config['primary_color']}}; color:white !important;">{{$address['address_type']}}</label>
-                                            <small>
-                                                <i class="fa fa-phone"></i> {{$address['phone']}}
-                                            </small>
+                                                   style="background: {{$web_config['primary_color']}}; color:white !important; float:inline-end;">{{$address['address_type']}}</label>
+                                            
                                             <hr>
                                             <div class="d-flex">
                                                 <div class="w-0 flex-grow-1 justify-content-between">
@@ -144,14 +56,14 @@
                                             </div>
                                         </li>
                                     @endforeach
-                                    <li class="list-group-item" onclick="anotherAddress()">
+                                    <li onclick="anotherAddress()">
                                         <input type="radio" name="shipping_method_id"
                                                id="sh-0" value="0" data-toggle="collapse"
-                                               data-target="#collapseThree" {{$shipping_addresses->count()==0?'checked':''}}>
+                                               data-target="#collapseThree" {{$shipping_addresses->count()==0?'checked':''}} style="height: 15px; width: 15px; position: relative;">
                                         <span class="checkmark"
                                               style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 10px"></span>
 
-                                        <button type="button" class="btn btn-outline anotherAdd" data-toggle="collapse"
+                                        <button type="button" class="btn custom_btn" style="margin-top: 10px;" data-toggle="collapse"
                                                 data-target="#collapseThree" >{{ \App\CPU\translate('Another')}} {{ \App\CPU\translate('address')}}
                                         </button>
                                         <div id="accordion">
@@ -177,7 +89,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="exampleInputPassword1">{{ \App\CPU\translate('address')}} {{ \App\CPU\translate('Type')}}</label>
-                                                        <select class="form-control" name="address_type" style="padding:0px !important; height: 50px !important;">
+                                                        <select class="form-control" name="address_type" style="height: 70px" >
                                                             <option
                                                                 value="permanent">{{ \App\CPU\translate('Permanent')}}</option>
                                                             <option value="home">{{ \App\CPU\translate('Home')}}</option>
@@ -232,7 +144,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="country">{{ \App\CPU\translate('Country')}}</label>
-                                                        <select class="form-control" name="country" style="padding:0px !important; height: 50px !important;">
+                                                        <select class="form-control" name="country" style="height: 70px">
                                                             @forelse($countries as $country)
                                                                     <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
                                                             @empty
@@ -250,7 +162,7 @@
                                                                   name="address" {{$shipping_addresses->count()==0?'required':''}}></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input id="pac-input" class="controls rounded __inline-46" title="{{\App\CPU\translate('search_your_location_here')}}" type="text" placeholder="{{\App\CPU\translate('search_here')}}"/>
+                                                        <input id="pac-input" class="controls rounded __inline-46 form-control" title="{{\App\CPU\translate('search_your_location_here')}}" type="text" placeholder="{{\App\CPU\translate('search_here')}}"/>
                                                         <div class="__h-200px" id="location_map_canvas"></div>
                                                     </div>
                                                      <div class="form-check" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.25rem;">
@@ -327,15 +239,15 @@
 
                                         </li>
                                     @endforeach
-                                    <li class="list-group-item" onclick="billingAddress()">
-                                        <input type="radio" name="billing_method_id"
+                                    <li class="bg-grey-box" onclick="billingAddress()">
+                                        <input type="radio" name="billing_method_id" style="height: 15px; width: 15px; position: relative;"
                                             id="bh-0" value="0" data-toggle="collapse"
                                             data-target="#billing_model" checked>
 {{--                                        {{$billing_addresses->count()==0?'checked':''}}--}}
                                         <span class="checkmark"
                                             style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 10px"></span>
 
-                                        <button type="button" class="btn btn-outline anotherAdd" data-toggle="collapse"
+                                        <button type="button" class="btn custom_btn" data-toggle="collapse" style="margin-top: 10px"
                                                 data-target="#billing_model">{{ \App\CPU\translate('Another')}} {{ \App\CPU\translate('address')}}
                                         </button>
                                         <div id="accordion">
@@ -361,7 +273,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="exampleInputPassword1">{{ \App\CPU\translate('address')}} {{ \App\CPU\translate('Type')}}</label>
-                                                        <select class="form-control" name="billing_address_type" style="padding:0px !important; height: 50px !important;">
+                                                        <select class="form-control" name="billing_address_type" style="height: 70px">
                                                             <option
                                                                 value="permanent">{{ \App\CPU\translate('Permanent')}}</option>
                                                             <option value="home">{{ \App\CPU\translate('Home')}}</option>
@@ -398,10 +310,9 @@
                                                         <label
                                                             for="exampleInputEmail1">{{ \App\CPU\translate('Country')}}
                                                             <span style="color: red">*</span></label>
-                                                        <select name="billing_country"  id="" class="form-control selectpicker" style="padding: 0px !important; height: 50px !important;" data-live-search="true">
+                                                        <select name="billing_country"  id="" style="height:70px;" class="form-control " data-live-search="true">
                                                             @foreach($countries as $country)
                                                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
-
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -416,7 +327,7 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <input id="pac-input-billing" class="controls rounded __inline-46"
+                                                        <input id="pac-input-billing" class="controls rounded __inline-46 form-control"
                                                             title="{{\App\CPU\translate('search_your_location_here')}}"
                                                             type="text"
                                                             placeholder="{{\App\CPU\translate('search_here')}}"/>
@@ -457,14 +368,14 @@
                     <!-- Navigation (desktop)-->
                     <div class="row mt-3">
                         <div class="col-6">
-                            <a class="btn btn-secondary btn-block" href="{{route('shop-cart')}}" style="padding:10px 15px; border: 1px solid #000 !important; text-transform:capitalize;">
+                            <a class="btn btn-secondary btn-block custom_btn" style="font-size: 15px" href="{{route('shop-cart')}}" >
                                 <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} mt-sm-0 mx-1"></i>
                                 <span class="d-none d-sm-inline">{{ \App\CPU\translate('shop_cart')}}</span>
                                 <span class="d-inline d-sm-none">{{ \App\CPU\translate('shop_cart')}}</span>
                             </a>
                         </div>
                         <div class="col-6">
-                            <a class="btn btn--primary btn-block" style="background: #FF061E !important; padding:10px 15px; border: 1px solid #FF061E !important; text-transform:capitalize;" href="javascript:" onclick="proceed_to_next()">
+                            <a class="btn btn--primary btn-block custom_btn"  href="javascript:" onclick="proceed_to_next()">
                                 <span class="d-none d-sm-inline">{{ \App\CPU\translate('Next')}}</span>
                                 <span class="d-inline d-sm-none">{{ \App\CPU\translate('Next')}}</span>
                                 <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}} mt-sm-0 mx-1"></i>

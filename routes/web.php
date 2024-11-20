@@ -19,6 +19,13 @@ use Illuminate\Http\Request;
 //for maintenance mode
 Route::get('maintenance-mode', 'Web\WebController@maintenance_mode')->name('maintenance-mode');
 
+Route::get('/test-email', function () {
+    \Mail::raw('This is a test email', function ($message) {
+        $message->to('hw13604@gmail.com')
+                ->subject('Test Email');
+    });
+    return 'Email sent successfully!';
+});
 
 Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function () {
     Route::get('/', 'WebController@home')->name('home');
